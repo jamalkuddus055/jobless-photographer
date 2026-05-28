@@ -92,8 +92,8 @@ export default function App() {
     return (
       <div className="h-screen w-full bg-black flex items-center justify-center px-6">
         <div className="text-center animate-pulse">
-          <h1 className="text-3xl sm:text-5xl font-bold text-white mb-4 tracking-wide">
-            _jobless_photographer
+          <h1 className="text-4xl sm:text-6xl font-bold text-white mb-4 tracking-wide">
+            Shutter Man
           </h1>
 
           <p className="text-gray-400 text-sm sm:text-base tracking-[0.3em] uppercase">
@@ -122,12 +122,12 @@ export default function App() {
             Photography Portfolio
           </p>
 
-          <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            _jobless_photographer
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 leading-tight">
+            Shutter Man
           </h1>
 
           <p className="text-gray-300 mb-8 text-sm sm:text-base leading-7">
-            A teenage photographer capturing emotions, silence, light, and stories people ignore.
+            Capturing emotions, silence, light, and stories people ignore.
           </p>
 
           <div className="flex gap-4 justify-center flex-wrap">
@@ -144,7 +144,7 @@ export default function App() {
               rel="noreferrer"
               className="border border-white/30 px-6 py-3 rounded-2xl hover:bg-white hover:text-black transition"
             >
-              Instagram
+              @_jobless_photographer
             </a>
           </div>
         </div>
@@ -163,7 +163,7 @@ export default function App() {
 
         <div>
           <p className="uppercase tracking-[0.3em] text-gray-400 text-xs sm:text-sm mb-4">
-            About Me
+            About
           </p>
 
           <h2 className="text-3xl sm:text-4xl font-bold mb-6 leading-tight">
@@ -171,7 +171,7 @@ export default function App() {
           </h2>
 
           <p className="text-gray-300 leading-8 text-sm sm:text-base">
-            I focus on emotion, atmosphere, silence, and stories hidden in ordinary moments.
+            Shutter Man is focused on emotion, atmosphere, silence, and stories hidden in ordinary moments.
           </p>
         </div>
       </section>
@@ -275,7 +275,7 @@ export default function App() {
       {/* FOOTER */}
       <footer className="text-center py-10 border-t border-white/10 mt-20 px-4">
         <p className="text-gray-400 text-sm">
-          _jobless_photographer • Built with React + Tailwind
+          Shutter Man • @_jobless_photographer
         </p>
       </footer>
     </div>
