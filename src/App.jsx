@@ -91,10 +91,6 @@ export default function App() {
         />
 
         <div className="relative text-center px-4 sm:px-6 max-w-3xl">
-          <p className="uppercase tracking-[0.3em] sm:tracking-[0.4em] text-gray-300 text-xs sm:text-sm mb-4">
-            Photography Portfolio
-          </p>
-
           <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-6">
             _jobless_photographer
           </h1>
@@ -102,72 +98,15 @@ export default function App() {
           <p className="text-gray-300 mb-8 text-sm sm:text-base">
             A teenage photographer capturing emotions, silence, light, and stories people ignore.
           </p>
-
-          <div className="flex gap-3 sm:gap-4 justify-center flex-wrap">
-            <a
-              href="#gallery"
-              className="bg-white text-black px-4 sm:px-6 py-2 sm:py-3 rounded-2xl font-semibold hover:scale-105 transition text-sm sm:text-base"
-            >
-              View Gallery
-            </a>
-
-            <a
-              href="https://instagram.com/_jobless_photographer"
-              target="_blank"
-              rel="noreferrer"
-              className="border border-white/30 px-4 sm:px-6 py-2 sm:py-3 rounded-2xl hover:bg-white hover:text-black transition text-sm sm:text-base"
-            >
-              Instagram
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ABOUT */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        <img
-          src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1200&auto=format&fit=crop"
-          className="rounded-3xl w-full"
-          alt="camera"
-        />
-
-        <div>
-          <p className="uppercase tracking-[0.3em] text-gray-400 text-xs sm:text-sm mb-4">
-            About Me
-          </p>
-
-          <h2 className="text-2xl sm:text-4xl font-bold mb-6">
-            I photograph feelings more than faces.
-          </h2>
-
-          <p className="text-gray-300 leading-7 sm:leading-8 text-sm sm:text-base">
-            I focus on emotion, atmosphere, silence, and stories hidden in ordinary moments.
-          </p>
         </div>
       </section>
 
       {/* GALLERY */}
       <section id="gallery" className="px-4 sm:px-6 py-16 sm:py-20 max-w-7xl mx-auto w-full">
+
         <h2 className="text-2xl sm:text-4xl font-bold text-center mb-10">
           Selected Photographs
         </h2>
-
-        {/* FILTERS */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-3 sm:px-5 py-2 rounded-2xl border text-xs sm:text-sm ${
-                activeCategory === cat
-                  ? "bg-white text-black"
-                  : "border-white/30 text-white"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
 
         {/* GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
@@ -177,17 +116,21 @@ export default function App() {
               onClick={() => setSelectedPhoto(photo)}
               className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden cursor-pointer hover:scale-[1.02] transition"
             >
+              
+              {/* 🔥 LAZY LOADING ADDED HERE */}
               <img
                 src={photo.image}
+                loading="lazy"
+                decoding="async"
                 className="h-64 sm:h-80 w-full object-cover"
                 alt={photo.title}
               />
 
               <div className="p-4 sm:p-5">
-                <p className="text-xs sm:text-sm text-gray-400">{photo.category}</p>
                 <h3 className="text-lg sm:text-xl font-semibold">
                   {photo.title}
                 </h3>
+
                 <p className="text-gray-400 text-xs sm:text-sm mt-2">
                   {photo.description}
                 </p>
@@ -209,6 +152,8 @@ export default function App() {
           >
             <img
               src={selectedPhoto.image}
+              loading="lazy"
+              decoding="async"
               className="w-full rounded-xl mb-6"
               alt=""
             />
