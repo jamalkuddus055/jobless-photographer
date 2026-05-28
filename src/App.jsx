@@ -267,10 +267,28 @@ export default function App() {
         </div>
       )}
 
-      {/* MUSIC BUTTON */}
-      <button className="fixed bottom-6 right-6 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-3 rounded-full hover:bg-white hover:text-black transition z-50">
-        🎧
-      </button>
+      {/* MUSIC PLAYER */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <button
+          onClick={() => {
+            const audio = document.getElementById("bg-music");
+
+            if (audio.paused) {
+              audio.volume = 0.35;
+              audio.play();
+            } else {
+              audio.pause();
+            }
+          }}
+          className="bg-white/10 backdrop-blur-md border border-white/20 px-4 py-3 rounded-full hover:bg-white hover:text-black transition"
+        >
+          🎧
+        </button>
+
+        <audio id="bg-music" loop>
+          <source src="/music.mp3" type="audio/mpeg" />
+        </audio>
+      </div>
 
       {/* FOOTER */}
       <footer className="text-center py-10 border-t border-white/10 mt-20 px-4">
