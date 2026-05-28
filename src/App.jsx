@@ -165,9 +165,8 @@ export default function App() {
           </h2>
 
           <p className="text-gray-300 leading-8">
-            I focus on emotion, atmosphere, silence,
-            and stories hidden in ordinary moments.
-          </p>
+           I don’t capture moments.
+            I capture what they leave behind.          </p>
         </div>
       </section>
 
