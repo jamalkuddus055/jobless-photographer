@@ -4,8 +4,6 @@ export default function App() {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [activeCategory, setActiveCategory] = useState("All");
   const [loading, setLoading] = useState(true);
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-  const [cursorGrow, setCursorGrow] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -13,18 +11,6 @@ export default function App() {
     }, 2200);
 
     return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    const moveCursor = (e) => {
-      setCursorPosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener("mousemove", moveCursor);
-
-    return () => {
-      window.removeEventListener("mousemove", moveCursor);
-    };
   }, []);
 
   const photos = [
@@ -117,21 +103,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white cursor-none">
-
-      {/* CUSTOM CURSOR */}
-      <div
-        className={`hidden md:block fixed top-0 left-0 rounded-full pointer-events-none z-50 transition-all duration-150 ${
-          cursorGrow
-            ? "w-16 h-16 bg-white/20"
-            : "w-6 h-6 bg-white/40"
-        }`}
-        style={{
-          transform: `translate(${cursorPosition.x - 12}px, ${
-            cursorPosition.y - 12
-          }px)`,
-        }}
-      />
+    <div className="min-h-screen bg-black text-white">
 
       {/* HERO */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -231,8 +203,6 @@ export default function App() {
             <div
               key={i}
               onClick={() => setSelectedPhoto(photo)}
-              onMouseEnter={() => setCursorGrow(true)}
-              onMouseLeave={() => setCursorGrow(false)}
               className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden cursor-pointer hover:scale-[1.02] transition duration-300"
             >
               <img
