@@ -4,13 +4,27 @@ export default function App() {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [activeCategory, setActiveCategory] = useState("All");
   const [loading, setLoading] = useState(true);
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const [cursorGrow, setCursorGrow] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 2200);
 
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const moveCursor = (e) => {
+      setCursorPosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener("mousemove", moveCursor);
+
+    return () => {
+      window.removeEventListener("mousemove", moveCursor);
+    };
   }, []);
 
   const photos = [
@@ -90,44 +104,55 @@ export default function App() {
 
   if (loading) {
     return (
-      <div className="h-screen w-full bg-black flex items-center justify-center px-6">
-        <div className="text-center animate-pulse">
-          <h1 className="text-4xl sm:text-6xl font-bold text-white mb-4 tracking-wide">
-            Shutter Man
-          </h1>
+      <div className="h-screen w-full bg-black text-white flex flex-col items-center justify-center">
+        <h1 className="text-3xl sm:text-5xl font-bold tracking-wide mb-4">
+          Shutter Man
+        </h1>
 
-          <p className="text-gray-400 text-sm sm:text-base tracking-[0.3em] uppercase">
-            loading memories...
-          </p>
-        </div>
+        <p className="text-gray-400 tracking-[0.3em] text-sm uppercase">
+          loading memories...
+        </p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col">
+    <div className="min-h-screen bg-black text-white cursor-none">
+
+      {/* CUSTOM CURSOR */}
+      <div
+        className={`hidden md:block fixed top-0 left-0 rounded-full pointer-events-none z-50 transition-all duration-150 ${
+          cursorGrow
+            ? "w-16 h-16 bg-white/20"
+            : "w-6 h-6 bg-white/40"
+        }`}
+        style={{
+          transform: `translate(${cursorPosition.x - 12}px, ${
+            cursorPosition.y - 12
+          }px)`,
+        }}
+      />
 
       {/* HERO */}
-      <section className="relative h-[80vh] sm:h-screen flex items-center justify-center">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1600&auto=format&fit=crop"
-          loading="lazy"
-          decoding="async"
           className="absolute inset-0 w-full h-full object-cover opacity-40"
           alt="hero"
         />
 
-        <div className="relative text-center px-4 sm:px-6 max-w-3xl">
-          <p className="uppercase tracking-[0.4em] text-gray-300 text-xs sm:text-sm mb-4">
-            Photography Portfolio
+        <div className="relative text-center px-6 max-w-3xl">
+          <p className="uppercase tracking-[0.4em] text-gray-300 text-sm mb-4">
+            Shutter Man
           </p>
 
-          <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 leading-tight">
-            Shutter Man
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6">
+            _jobless_photographer
           </h1>
 
           <p className="text-gray-300 mb-8 text-sm sm:text-base leading-7">
-            Capturing emotions, silence, light, and stories people ignore.
+            A teenage photographer capturing emotions, silence,
+            light, and stories people ignore.
           </p>
 
           <div className="flex gap-4 justify-center flex-wrap">
@@ -144,34 +169,32 @@ export default function App() {
               rel="noreferrer"
               className="border border-white/30 px-6 py-3 rounded-2xl hover:bg-white hover:text-black transition"
             >
-              @_jobless_photographer
+              Instagram
             </a>
           </div>
         </div>
       </section>
 
       {/* ABOUT */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-
+      <section className="py-20 px-6 max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
         <img
           src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1200&auto=format&fit=crop"
-          loading="lazy"
-          decoding="async"
-          className="rounded-3xl w-full"
+          className="rounded-3xl"
           alt="camera"
         />
 
         <div>
-          <p className="uppercase tracking-[0.3em] text-gray-400 text-xs sm:text-sm mb-4">
+          <p className="uppercase tracking-[0.3em] text-gray-400 text-sm mb-4">
             About
           </p>
 
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6 leading-tight">
+          <h2 className="text-4xl font-bold mb-6">
             I photograph feelings more than faces.
           </h2>
 
-          <p className="text-gray-300 leading-8 text-sm sm:text-base">
-            Shutter Man is focused on emotion, atmosphere, silence, and stories hidden in ordinary moments.
+          <p className="text-gray-300 leading-8">
+            I focus on emotion, atmosphere, silence,
+            and stories hidden in ordinary moments.
           </p>
         </div>
       </section>
@@ -179,9 +202,9 @@ export default function App() {
       {/* GALLERY */}
       <section
         id="gallery"
-        className="px-4 sm:px-6 py-16 sm:py-20 max-w-7xl mx-auto w-full"
+        className="px-4 sm:px-6 py-20 max-w-7xl mx-auto"
       >
-        <h2 className="text-2xl sm:text-4xl font-bold text-center mb-10">
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10">
           Selected Photographs
         </h2>
 
@@ -203,31 +226,33 @@ export default function App() {
         </div>
 
         {/* GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredPhotos.map((photo, i) => (
             <div
               key={i}
               onClick={() => setSelectedPhoto(photo)}
+              onMouseEnter={() => setCursorGrow(true)}
+              onMouseLeave={() => setCursorGrow(false)}
               className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden cursor-pointer hover:scale-[1.02] transition duration-300"
             >
               <img
                 src={photo.image}
                 loading="lazy"
                 decoding="async"
-                className="h-64 sm:h-80 w-full object-cover"
+                className="h-72 sm:h-80 w-full object-cover"
                 alt={photo.title}
               />
 
-              <div className="p-4 sm:p-5">
-                <p className="text-sm text-gray-400 mb-1">
+              <div className="p-5">
+                <p className="text-sm text-gray-400 mb-2">
                   {photo.category}
                 </p>
 
-                <h3 className="text-lg sm:text-xl font-semibold">
+                <h3 className="text-xl font-semibold mb-3">
                   {photo.title}
                 </h3>
 
-                <p className="text-gray-400 text-xs sm:text-sm mt-2 leading-6">
+                <p className="text-gray-400 text-sm leading-7">
                   {photo.description}
                 </p>
               </div>
@@ -243,28 +268,28 @@ export default function App() {
           onClick={() => setSelectedPhoto(null)}
         >
           <div
-            className="max-w-4xl w-full bg-black border border-white/20 rounded-2xl p-4 sm:p-6"
+            className="max-w-4xl w-full bg-black border border-white/20 rounded-3xl p-4 sm:p-6"
             onClick={(e) => e.stopPropagation()}
           >
             <img
               src={selectedPhoto.image}
               loading="lazy"
               decoding="async"
-              className="w-full rounded-xl mb-6 max-h-[70vh] object-cover"
-              alt={selectedPhoto.title}
+              className="w-full rounded-2xl mb-6 max-h-[75vh] object-cover"
+              alt=""
             />
 
-            <h2 className="text-2xl sm:text-3xl font-bold mb-3">
+            <h2 className="text-2xl sm:text-4xl font-bold mb-4">
               {selectedPhoto.title}
             </h2>
 
-            <p className="text-gray-300 text-sm sm:text-base mb-6 leading-7">
+            <p className="text-gray-300 leading-8 mb-6">
               {selectedPhoto.description}
             </p>
 
             <button
               onClick={() => setSelectedPhoto(null)}
-              className="bg-white text-black px-6 py-2 rounded-xl w-full sm:w-auto"
+              className="bg-white text-black px-6 py-3 rounded-2xl font-semibold"
             >
               Close
             </button>
@@ -272,10 +297,15 @@ export default function App() {
         </div>
       )}
 
+      {/* MUSIC BUTTON */}
+      <button className="fixed bottom-6 right-6 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-3 rounded-full hover:bg-white hover:text-black transition z-50">
+        🎧
+      </button>
+
       {/* FOOTER */}
       <footer className="text-center py-10 border-t border-white/10 mt-20 px-4">
         <p className="text-gray-400 text-sm">
-          Shutter Man • @_jobless_photographer
+          Shutter Man • _jobless_photographer
         </p>
       </footer>
     </div>
