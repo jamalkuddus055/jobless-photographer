@@ -1,8 +1,17 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export default function App() {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [activeCategory, setActiveCategory] = useState("All");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const photos = [
     {
@@ -78,6 +87,22 @@ export default function App() {
     activeCategory === "All"
       ? photos
       : photos.filter((p) => p.category === activeCategory);
+
+  if (loading) {
+    return (
+      <div className="h-screen w-full bg-black flex items-center justify-center px-6">
+        <div className="text-center animate-pulse">
+          <h1 className="text-3xl sm:text-5xl font-bold text-white mb-4 tracking-wide">
+            _jobless_photographer
+          </h1>
+
+          <p className="text-gray-400 text-sm sm:text-base tracking-[0.3em] uppercase">
+            loading memories...
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
