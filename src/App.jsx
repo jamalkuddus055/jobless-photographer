@@ -80,32 +80,33 @@ export default function App() {
       : photos.filter((p) => p.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Hero */}
-      <section className="relative h-screen flex items-center justify-center">
+    <div className="min-h-screen bg-black text-white flex flex-col">
+
+      {/* HERO */}
+      <section className="relative h-[80vh] sm:h-screen flex items-center justify-center">
         <img
           src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1600&auto=format&fit=crop"
           className="absolute inset-0 w-full h-full object-cover opacity-40"
           alt="hero"
         />
 
-        <div className="relative text-center px-6 max-w-3xl">
-          <p className="uppercase tracking-[0.4em] text-gray-300 text-sm mb-4">
+        <div className="relative text-center px-4 sm:px-6 max-w-3xl">
+          <p className="uppercase tracking-[0.3em] sm:tracking-[0.4em] text-gray-300 text-xs sm:text-sm mb-4">
             Photography Portfolio
           </p>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-6">
             _jobless_photographer
           </h1>
 
-          <p className="text-gray-300 mb-8">
+          <p className="text-gray-300 mb-8 text-sm sm:text-base">
             A teenage photographer capturing emotions, silence, light, and stories people ignore.
           </p>
 
-          <div className="flex gap-4 justify-center flex-wrap">
+          <div className="flex gap-3 sm:gap-4 justify-center flex-wrap">
             <a
               href="#gallery"
-              className="bg-white text-black px-6 py-3 rounded-2xl font-semibold hover:scale-105 transition"
+              className="bg-white text-black px-4 sm:px-6 py-2 sm:py-3 rounded-2xl font-semibold hover:scale-105 transition text-sm sm:text-base"
             >
               View Gallery
             </a>
@@ -114,7 +115,7 @@ export default function App() {
               href="https://instagram.com/_jobless_photographer"
               target="_blank"
               rel="noreferrer"
-              className="border border-white/30 px-6 py-3 rounded-2xl hover:bg-white hover:text-black transition"
+              className="border border-white/30 px-4 sm:px-6 py-2 sm:py-3 rounded-2xl hover:bg-white hover:text-black transition text-sm sm:text-base"
             >
               Instagram
             </a>
@@ -122,42 +123,42 @@ export default function App() {
         </div>
       </section>
 
-      {/* About */}
-      <section className="py-24 px-6 max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      {/* ABOUT */}
+      <section className="py-16 sm:py-24 px-4 sm:px-6 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <img
           src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1200&auto=format&fit=crop"
-          className="rounded-3xl"
+          className="rounded-3xl w-full"
           alt="camera"
         />
 
         <div>
-          <p className="uppercase tracking-[0.3em] text-gray-400 text-sm mb-4">
+          <p className="uppercase tracking-[0.3em] text-gray-400 text-xs sm:text-sm mb-4">
             About Me
           </p>
 
-          <h2 className="text-4xl font-bold mb-6">
+          <h2 className="text-2xl sm:text-4xl font-bold mb-6">
             I photograph feelings more than faces.
           </h2>
 
-          <p className="text-gray-300 leading-8">
+          <p className="text-gray-300 leading-7 sm:leading-8 text-sm sm:text-base">
             I focus on emotion, atmosphere, silence, and stories hidden in ordinary moments.
           </p>
         </div>
       </section>
 
-      {/* Gallery */}
-      <section id="gallery" className="px-6 py-20 max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-10">
+      {/* GALLERY */}
+      <section id="gallery" className="px-4 sm:px-6 py-16 sm:py-20 max-w-7xl mx-auto w-full">
+        <h2 className="text-2xl sm:text-4xl font-bold text-center mb-10">
           Selected Photographs
         </h2>
 
-        {/* filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
+        {/* FILTERS */}
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2 rounded-2xl border ${
+              className={`px-3 sm:px-5 py-2 rounded-2xl border text-xs sm:text-sm ${
                 activeCategory === cat
                   ? "bg-white text-black"
                   : "border-white/30 text-white"
@@ -168,8 +169,8 @@ export default function App() {
           ))}
         </div>
 
-        {/* grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           {filteredPhotos.map((photo, i) => (
             <div
               key={i}
@@ -178,14 +179,16 @@ export default function App() {
             >
               <img
                 src={photo.image}
-                className="h-80 w-full object-cover"
+                className="h-64 sm:h-80 w-full object-cover"
                 alt={photo.title}
               />
 
-              <div className="p-5">
-                <p className="text-sm text-gray-400">{photo.category}</p>
-                <h3 className="text-xl font-semibold">{photo.title}</h3>
-                <p className="text-gray-400 text-sm mt-2">
+              <div className="p-4 sm:p-5">
+                <p className="text-xs sm:text-sm text-gray-400">{photo.category}</p>
+                <h3 className="text-lg sm:text-xl font-semibold">
+                  {photo.title}
+                </h3>
+                <p className="text-gray-400 text-xs sm:text-sm mt-2">
                   {photo.description}
                 </p>
               </div>
@@ -194,14 +197,14 @@ export default function App() {
         </div>
       </section>
 
-      {/* Modal */}
+      {/* MODAL */}
       {selectedPhoto && (
         <div
-          className="fixed inset-0 bg-black/90 flex items-center justify-center p-6"
+          className="fixed inset-0 bg-black/90 flex items-center justify-center p-4"
           onClick={() => setSelectedPhoto(null)}
         >
           <div
-            className="max-w-4xl w-full bg-black border border-white/20 rounded-2xl p-6"
+            className="max-w-4xl w-full bg-black border border-white/20 rounded-2xl p-4 sm:p-6"
             onClick={(e) => e.stopPropagation()}
           >
             <img
@@ -210,17 +213,17 @@ export default function App() {
               alt=""
             />
 
-            <h2 className="text-3xl font-bold mb-3">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-3">
               {selectedPhoto.title}
             </h2>
 
-            <p className="text-gray-300 mb-6">
+            <p className="text-gray-300 text-sm sm:text-base mb-6">
               {selectedPhoto.description}
             </p>
 
             <button
               onClick={() => setSelectedPhoto(null)}
-              className="bg-white text-black px-6 py-2 rounded-xl"
+              className="bg-white text-black px-6 py-2 rounded-xl w-full sm:w-auto"
             >
               Close
             </button>
@@ -228,12 +231,13 @@ export default function App() {
         </div>
       )}
 
-      {/* Footer */}
-      <footer className="text-center py-10 border-t border-white/10 mt-20">
-        <p className="text-gray-400">
+      {/* FOOTER */}
+      <footer className="text-center py-10 border-t border-white/10 mt-20 px-4">
+        <p className="text-gray-400 text-sm">
           _jobless_photographer • Built with React + Tailwind
         </p>
       </footer>
+
     </div>
   );
 }
