@@ -16,7 +16,7 @@ export default function App() {
   const photos = [
     {
       title: "Inferno Wings",
-      category: "Nature",
+      category: "Fauna",
       description:
         "A spark of fire resting in a sea of green, whispering that beauty is often found in the quietest corners of the wild.",
       image: "https://i.imgur.com/uiBKHU8.jpeg",
@@ -77,6 +77,53 @@ export default function App() {
         "An old man pauses by the green fields, his hand resting on his walking stick as he looks out over the land that has witnessed every step of his journey.",
       image: "https://i.imgur.com/cL0lSof.jpeg",
     },
+        {
+      title: "Where Peace Blooms",
+      category: "Nature",
+      description:
+        "A pure white peace lily emerges from a sea of fading, bruised green leaves, proving that grace can flourish even in the most shadowed places.",
+      image: "https://i.imgur.com/GQa3eye.jpeg",
+    },
+    
+        {
+      title: "Whispers of the Ridge",
+      category: "Nature",
+      description:
+        "Fringed by a canopy of pine needles and wind-swept prayer flags, a rolling green hillside opens up to reveal the soft, blue silence of distant mountains.",
+      image: "https://i.imgur.com/bLiGfiW.jpeg",
+    },
+ {
+      title: "Descent to the Sacred",
+      category: "Nature",
+      description:
+        "A spiral of crimson stone winds deep into the earth, guiding steps away from the bright blooms above and into the quiet secrets of the cavern floor.",
+      image: "https://i.imgur.com/kwrijJc.jpeg",
+    },
+    
+     {
+      title: "The Weaver",
+      category: "Fauna",
+      description:
+        "A huge golden orb-weaver spider hanging dead-center in its web against a bright green background.",
+      image: "https://i.imgur.com/ywvL85M.jpeg",
+    },
+    
+     {
+      title: "Morning Melody",
+      category: "Fauna",
+      description:
+        "A black-and-white oriental magpie-robin perched on a wooden railing with its beak open in mid-song.",
+      image: "https://i.imgur.com/4vcTw3X.jpeg",
+    },
+        {
+      title: "Where Steel Meets Concrete",
+      category: "Street",
+      description:
+        "Commuters walk along active railway tracks running directly beneath a massive concrete highway flyover.",
+      image: "https://i.imgur.com/vBeIT1H.jpeg",
+    },
+
+
   ];
 
   const categories = useMemo(() => {
