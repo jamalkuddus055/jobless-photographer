@@ -193,6 +193,7 @@ export default function App() {
           </div>
         </div>
       </section>
+      
 
       {/* ABOUT */}
       <section className="py-20 px-6 max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
@@ -274,6 +275,49 @@ export default function App() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+            {/* WORK WITH ME */}
+      <section className="py-24 px-6 max-w-4xl mx-auto text-center">
+        <p className="uppercase tracking-[0.3em] text-gray-400 text-sm mb-4">
+          Collaborations
+        </p>
+
+        <h2 className="text-4xl sm:text-5xl font-bold mb-8">
+          Let's Create Something Meaningful
+        </h2>
+
+        <p className="text-gray-300 leading-8 max-w-3xl mx-auto mb-10">
+          Every place has a story. Every face carries a world.
+          <br />
+          <br />
+          I work with brands, businesses, artists, and organizations to create
+          photographs that feel genuine, human, and memorable.
+          <br />
+          <br />
+          From quiet portraits to travel stories and visual campaigns, I'm
+          always open to collaborations that value authenticity over trends.
+          <br />
+          <br />
+          If that sounds like something you're looking for, let's talk.
+        </p>
+
+        <div className="flex flex-wrap justify-center gap-4">
+          <a
+            href="mailto:jamalkuddus055@gmail.com"
+            className="bg-white text-black px-6 py-3 rounded-2xl font-semibold hover:scale-105 transition"
+          >
+            Email Me
+          </a>
+
+          <a
+            href="https://instagram.com/_jobless_photographer"
+            target="_blank"
+            rel="noreferrer"
+            className="border border-white/30 px-6 py-3 rounded-2xl hover:bg-white hover:text-black transition"
+          >
+            Instagram DM
+          </a>
         </div>
       </section>
 
