@@ -97,7 +97,7 @@ export default function App() {
       category: "Nature",
       description:
         "A spiral of crimson stone winds deep into the earth, guiding steps away from the bright blooms above and into the quiet secrets of the cavern floor.",
-      image: "https://i.imgur.com/kwrijJc.jpeg",
+      image: "https://i.imgur.com/Vk5cVz7.jpeg",
     },
     
      {
